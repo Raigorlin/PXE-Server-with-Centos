@@ -1,0 +1,74 @@
+default menu.c32
+prompt 0
+timeout 300
+ONTIMEOUT 1
+
+menu title ########## PXE Boot Menu ##########
+
+label 1
+menu label ^1) Boot From Hard Drive
+menu default
+localboot 0
+
+label 2
+menu label ^2) Install CentOS 7
+menu 2
+kernel bootloader/centos7/vmlinuz
+# append initrd=bootloader/centos7/initrd.img method=http://10.99.1.25/centos7 devfs=nomount
+append initrd=bootloader/centos7/initrd.img ks=ftp://10.99.1.25/pub/kickstart-centos7.cfg
+
+label 3
+menu label ^3) Install CentOS 8
+menu 3
+kernel bootloader/centos8/vmlinuz
+# append initrd=bootloader/centos8/initrd.img method=http://10.99.1.25/centos8 devfs=nomount
+append initrd=bootloader/centos8/initrd.img inst.ks=ftp://10.99.1.25/pub/kickstart-centos8.cfg
+
+label 4
+menu label ^4) Install CentOS 9
+menu 4
+kernel bootloader/centos9/vmlinuz
+# append initrd=bootloader/centos8/initrd.img method=http://10.99.1.25/centos8 devfs=nomount
+append initrd=bootloader/centos9/initrd.img inst.ks=ftp://10.99.1.25/pub/kickstart-centos9.cfg
+
+label 5
+menu label ^5) Install Ubuntu18.04.02-Server
+kernel bootloader/ubuntu18.04-server/casper/vmlinuz
+# append initrd=bootloader/ubuntu18.04-server/initrd.img method=http://10.99.1.25/ubuntu18.04-server devfs=nomount
+append initrd=bootloader/ubuntu18.04-server/casper/initrd 
+ks=nfs:192.168.116.41:/nfsshare/ubuntu18/preseed/ubuntu.seed --- quiet
+
+label 6
+menu label ^6) Install Windows Server 2019
+kernel memdisk
+append iso raw initrd=bootloader/winserver2019/win-server-2019-pe.iso
+
+label 7
+menu label ^7) Install Windows Server 2016
+kernel memdisk
+append iso raw initrd=bootloader/winserver2016/win-server-2016-pe.iso
+
+label 8
+menu label ^8) Install Windows 10 Pro (Domain Joined)
+kernel memdisk
+append iso raw initrd=bootloader/win10/win-10-pe.iso
+
+label 9
+menu label ^9) Install Windows 11 Pro (Domain Joined)
+kernel memdisk
+append iso raw initrd=bootloader/wins11/win-11-pe.iso
+
+label 10
+menu label ^10) Boot Win10 (Maintenance Only)
+kernel memdisk
+append iso raw initrd=bootloader/preboot/Win10_PE.iso
+
+label 11
+menu label ^11) Install ESXI 6.7 (For Dell Server)
+kernel bootloader/esxi6.7-dell/mboot.c32
+append -c bootloader/esxi6.7-dell/boot.cfg
+
+label 12
+menu label ^12) Install ESXI 8.0u2
+kernel bootloader/esxi8u2/mboot.c32
+append -c bootloader/esxi8u2/boot.cfg

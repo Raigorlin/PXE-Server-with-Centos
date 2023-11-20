@@ -23,7 +23,8 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
         - ***[Finalize Sysprep](#finalize)***
 4. ***[Capture Image (Using DISM after Generalize)](#capture-image-using-dism-after-generalize)***
 5. ***[Convert Wim To ISO](#convert-wim-to-iso)***
-6. ***[Troubleshooting](#windows-troubleshooting)***
+6. ***[Add Windows Update Packages](#Add-Windows-Update-packages)***
+7. ***[Troubleshooting](#windows-troubleshooting)***
 ## Install ADK Tool (For Windows 10/11)
 
 - Download the [ADK Tool](https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install).

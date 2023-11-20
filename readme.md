@@ -24,7 +24,8 @@
             - ***[Finalize Sysprep](/Windows/readme.md/#finalize)***
     4. ***[Capture Image (Using DISM after Generalize)](/Windows/readme.md/#capture-image-using-dism-after-generalize)***
     5. ***[Convert Wim To ISO](/Windows/readme.md/#convert-wim-to-iso)***
-    6.  ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
+    6. ***[Add Windows Update Packages](/Windows/readme.md/#Add-Windows-Update-packages)***
+    7.  ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
 4. ***[Centos Setup](/Linux/readme.md/#Centos-Setup)***
     - ***[Copy files from iso](/Linux/readme.md/#copy-files-from-iso)***
     - ***[Config Centos Kickstart ](/Linux/readme.md/#centos-kickstart)***

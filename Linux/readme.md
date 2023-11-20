@@ -7,9 +7,9 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
 
 ## Steps
 
-1. [Copy files from iso](#copy-files-from-iso)
-2. [Config Centos Kickstart ]
-3. Config PXE server for auto installation
+1. ***[Copy files from iso](#copy-files-from-iso)***
+2. ***[Config Centos Kickstart ](#centos-kickstart)***
+3. ***[Config PXE server for auto installation](#config-pxe-server)***
 
 ## Copy files from iso
 

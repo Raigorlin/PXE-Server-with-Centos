@@ -12,20 +12,23 @@
     1. ***[Install ADK Tool](/Windows/readme.md/#install-adk-tool-for-windows-1011)***
     2. ***[How to enscapsulate windows PE](/Windows/readme.md/#how-to-enscapsulate-windows-pe-preinstall-environment)***
     3. ***[How to sysprep](/Windows/readme.md/#how-to-sysprep)***
-        - [Config Unattend XML](/Windows/readme.md/#config-unattend-file)
-        - [Run Sysprep](/Windows/readme.md/#run-sysprep)
-            - [Why sysprep](/Windows/readme.md/#why-sysprep)
-            - [Install OEM Information and Logo](/Windows/readme.md/#step-1-install-oem-information-and-logo)
-            - [Install the Drivers and Apps](/Windows/readme.md/#step-2-install-the-drivers-and-apps)
-            - [Disable Telemetry and Data Collection in Windows 10](/Windows/readme.md/#step-3-disable-telemetry-and-data-collection-in-windows-10)
-            - [Install Windows Security Update in Audit Mode](/Windows/readme.md/#step-4-install-windows-security-update-in-audit-mode)
-            - [Uninstall Built-in Microsoft Store Apps](/Windows/readme.md/#step-5-uninstall-built-in-microsoft-store-apps)
-            - [Setup Networks & Clean Caches ](/Windows/readme.md/#setup-networks--clean-caches)
-            - [Finalize Sysprep](/Windows/readme.md/#finalize)
+        - ***[Config Unattend XML](/Windows/readme.md/#config-unattend-file)***
+        - ***[Run Sysprep](/Windows/readme.md/#run-sysprep)***
+            - ***[Why sysprep](/Windows/readme.md/#why-sysprep)***
+            - ***[Install OEM Information and Logo](/Windows/readme.md/#step-1-install-oem-information-and-logo)***
+            - ***[Install the Drivers and Apps](/Windows/readme.md/#step-2-install-the-drivers-and-apps)***
+            - ***[Disable Telemetry and Data Collection in Windows 10](/Windows/readme.md/#step-3-disable-telemetry-and-data-collection-in-windows-10)***
+            - ***[Install Windows Security Update in Audit Mode](/Windows/readme.md/#step-4-install-windows-security-update-in-audit-mode)***
+            - ***[Uninstall Built-in Microsoft Store Apps](/Windows/readme.md/#step-5-uninstall-built-in-microsoft-store-apps)***
+            - ***[Setup Networks & Clean Caches ](/Windows/readme.md/#setup-networks--clean-caches)***
+            - ***[Finalize Sysprep](/Windows/readme.md/#finalize)***
         - ***[Capture Image (Using DISM after Generalize)](/Windows/readme.md/#capture-image-using-dism-after-generalize)***
         - ***[Convert Wim To ISO](/Windows/readme.md/#convert-wim-to-iso)***
         - ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
-4. ***Centos Kickstart***
+4. ***[Centos Setup](/Linux/readme.md/#Centos-Setup)***
+    - ***[Copy files from iso](/Linux/readme.md/#copy-files-from-iso)***
+    - ***[Config Centos Kickstart ](/Linux/readme.md/#centos-kickstart)***
+    - ***[Config PXE server for auto installation](/Linux/readme.md/#config-pxe-server)***
 
 
 ---

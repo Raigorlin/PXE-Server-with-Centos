@@ -11,16 +11,16 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
 1. ***[Install ADK Tool](#install-adk-tool-for-windows-1011)***
 2. ***[How to enscapsulate windows PE](#how-to-enscapsulate-windows-pe-preinstall-environment)***
 3. ***[How to sysprep](#how-to-sysprep)***
-    1. [Config Unattend XML](#config-unattend-file)
-    2. [Run Sysprep](#run-sysprep)
-        - [Why sysprep](#why-sysprep)
-        - [Install OEM Information and Logo](#step-1-install-oem-information-and-logo)
-        - [Install the Drivers and Apps](#step-2-install-the-drivers-and-apps)
-        - [Disable Telemetry and Data Collection in Windows 10](#step-3-disable-telemetry-and-data-collection-in-windows-10)
-        - [Install Windows Security Update in Audit Mode](#step-4-install-windows-security-update-in-audit-mode)
-        - [Uninstall Built-in Microsoft Store Apps](#step-5-uninstall-built-in-microsoft-store-apps)
-        - [Setup Networks & Clean Caches ](#setup-networks--clean-caches)
-        - [Finalize Sysprep](#finalize)
+    1. ***[Config Unattend XML](#config-unattend-file)***
+    2. ***[Run Sysprep](#run-sysprep)***
+        - ***[Why sysprep](#why-sysprep)***
+        - ***[Install OEM Information and Logo](#step-1-install-oem-information-and-logo)***
+        - ***[Install the Drivers and Apps](#step-2-install-the-drivers-and-apps)***
+        - ***[Disable Telemetry and Data Collection in Windows 10](#step-3-disable-telemetry-and-data-collection-in-windows-10)***
+        - ***[Install Windows Security Update in Audit Mode](#step-4-install-windows-security-update-in-audit-mode)***
+        - ***[Uninstall Built-in Microsoft Store Apps](#step-5-uninstall-built-in-microsoft-store-apps)***
+        - ***[Setup Networks & Clean Caches ](#setup-networks--clean-caches)***
+        - ***[Finalize Sysprep](#finalize)***
 4. ***[Capture Image (Using DISM after Generalize)](#capture-image-using-dism-after-generalize)***
 5. ***[Convert Wim To ISO](#convert-wim-to-iso)***
 6. ***[Troubleshooting](#windows-troubleshooting)***
@@ -398,6 +398,47 @@ dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\\win-10-sysprep.wim 
 oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bd:(file_path)\boot\etfsboot.com#pEF,e,bd:\(file_path)\efi\microsoft\boot\efisys.bin C:\(file_path) C:\Windows-10-Pro-x64.iso
 ```
 ---
+
+
+### Add Windows Update packages
+
+#### Step 1
+---
+Download update from [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/Home.aspx)
+
+---
+![Alt Text](/screenshots/windows-update-1.png)
+```
+cd C:\temp
+
+expand -f:* windows10.0-kb5015020-x64_5a735e4c21ca90801b3e0b019ac210147a978c52.msu C:\
+```
+![Alt Text](/screenshots/extract-msu-to-cab.png)
+
+#### Step 2
+
+Download Dsim++ from [https://github.com/Chuyu-Team/Dism-Multi-language/releases](https://github.com/Chuyu-Team/Dism-Multi-language/releases) 
+
+#### Step 3 
+Mount Image to mount folder
+
+```
+dism /Mount-Image /ImageFile:C:\win-10\sources\install.wim /Index:1 /MountDir:C:\mount
+```
+
+#### Step 4
+
+![Alt Text](/screenshots/DISM++.png)
+
+#### Step 5 
+
+Umount Image
+
+```
+dism /Unmount-Image /MountDir:C:\mount /Commit
+```
+---
+
 ## Windows Troubleshooting
 
 ### ADK Toolkit (Windows System Image Manager)

@@ -22,9 +22,9 @@
             - ***[Uninstall Built-in Microsoft Store Apps](/Windows/readme.md/#step-5-uninstall-built-in-microsoft-store-apps)***
             - ***[Setup Networks & Clean Caches ](/Windows/readme.md/#setup-networks--clean-caches)***
             - ***[Finalize Sysprep](/Windows/readme.md/#finalize)***
-        - ***[Capture Image (Using DISM after Generalize)](/Windows/readme.md/#capture-image-using-dism-after-generalize)***
-        - ***[Convert Wim To ISO](/Windows/readme.md/#convert-wim-to-iso)***
-        - ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
+    4. ***[Capture Image (Using DISM after Generalize)](/Windows/readme.md/#capture-image-using-dism-after-generalize)***
+    5. ***[Convert Wim To ISO](/Windows/readme.md/#convert-wim-to-iso)***
+    6.  ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
 4. ***[Centos Setup](/Linux/readme.md/#Centos-Setup)***
     - ***[Copy files from iso](/Linux/readme.md/#copy-files-from-iso)***
     - ***[Config Centos Kickstart ](/Linux/readme.md/#centos-kickstart)***

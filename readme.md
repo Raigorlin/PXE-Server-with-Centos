@@ -58,7 +58,9 @@ cp -f /usr/share/syslinux/{chain.c32,mboot.c32,memdisk,menu.c32,pxelinux.0} /var
 
 mkdir /var/lib/tftpboot/bootloader
 
-mkdir -p /var/lib/tftpboot/pxelinux.cfg/default
+mkdir -p /var/lib/tftpboot/pxelinux.cfg
+
+touch /var/lib/tftpboot/pxelinux.cfg/default
 ```
 >  TFTP Folder Structure
 
@@ -99,6 +101,11 @@ mkdir -p /var/lib/tftpboot/pxelinux.cfg/default
 
 ```
 > This is example config of pxelinux.cfg/default
+
+
+```shell
+vi /var/lib/tftpboot/pxelinux.cfg/default
+```
 
 ```shell
 default menu.c32

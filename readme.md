@@ -251,6 +251,8 @@ sed -i -E 's/anonymous\_enable\=.*/anonymous_enable=NO/g' /etc/vsftpd/vsftpd.con
 > Add Samba Directory for PXE Installation Folder
 
 ```shell
+cat <<EOF >> /etc/samba/smb.conf
+# add this one 
 [install]
         comment = Installation Media
         path = /home/smbshare
@@ -258,6 +260,7 @@ sed -i -E 's/anonymous\_enable\=.*/anonymous_enable=NO/g' /etc/vsftpd/vsftpd.con
         writable = yes 
         printable = no 
         browseable = yes
+EOF
 ```
 
 > Then make folder in /home/smbshare
@@ -339,21 +342,12 @@ sed -i -E "s/SELINUX=enforcing/SELINUX=disabled/g" /etc/selinux/config
 # Get services list
 firewall-cmd --get-services
 # You can add firewall by services
-# Add firewall rules with services
 sudo firewall-cmd --zone=public --add-service=http --permanent
 sudo firewall-cmd --zone=public --add-service=samba --permanent
 sudo firewall-cmd --zone=public --add-service=tftp --permanent
-
-# You can also add firewall by port 
-# SSH service
-sudo firewall-cmd --zone=public --add-port=22/tcp --permanent
-# FTP Service
-sudo firewall-cmd --zone=public --add-port=21/tcp --permanent
-sudo firewall-cmd --zone=public --add-port=21/udp --permanent
-sudo firewall-cmd --zone=public --add-port=20/tcp --permanent
-sudo firewall-cmd --zone=public --add-port=20/udp --permanent
-# TFTP service
-sudo firewall-cmd --zone=public --add-port=69/udp --permanent  
+sudo firewall-cmd --zone=public --add-service=ftp --permanent
+sudo firewall-cmd --zone=public --add-service=samba --permanent
+sudo firewall-cmd --zone=public --add-service=ssh --permanent
 
 # Reload firewall 
 sudo firewall-cmd --reload

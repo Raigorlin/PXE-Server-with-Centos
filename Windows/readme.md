@@ -67,7 +67,7 @@ cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows
 ```
 > Make a copy of amd64 folder to C:\winpe
 ```cmd
-.\copype.cmd .\amd64\ 'C:\winpe\'
+.\copype.cmd .\amd64 C:\winpe
 ```
 > mount Image to target folder
 ```cmd
@@ -85,7 +85,7 @@ rem net use z: \\10.99.1.25\install\win-10 /user:<username> <yourpassword>
 net use z: \\10.99.1.25\install\win-10
 
 rem start installation
-z:\setup.exe /unattend:\\10.99.1.25\install\autoinstal_conf\win-10.xml 
+z:\setup.exe /unattend:\\10.99.1.25\install\autoinstall_conf\win-10.xml 
 ```
 > Umount C:\winpe\mount
 
@@ -239,6 +239,8 @@ Windows Registry Editor Version 5.00
 #### Step 2: Install the Drivers and Apps
 ---
 You can install programs manually, or using the built-in WinGet package manager. Use the WinGet package manager to install the software that you need. (about 5000 programs available in WinGet repo).
+
+> `[Note]` Winget only avaliable on windows 22H2 or above
 
 ```
 winget install --id=7zip.7zip -e && winget install --id=Google.Chrome -e && winget install --id=Adobe.Acrobat.Reader.32-bit

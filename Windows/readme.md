@@ -440,6 +440,12 @@ dism /Unmount-Image /MountDir:C:\mount /Commit
 ```
 ---
 
+### Remove Images from wim file
+
+```
+Remove-WindowsImage -ImagePath "c:\win-10\sources\install.wim" -Index 1 -CheckIntegrity
+```
+
 ## Windows Troubleshooting
 
 ### ADK Toolkit (Windows System Image Manager)

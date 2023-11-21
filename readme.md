@@ -273,6 +273,11 @@ chown -R root:root /home/smbshare
 chmod -R +x /home/smbshare
 ```
 
+```shell
+# Create User for smb
+echo -e "P@ssw0rd\nP@ssw0rd"smbpasswd -a root
+```
+
 > Samba Folder Structure is like this
 
 ```shell

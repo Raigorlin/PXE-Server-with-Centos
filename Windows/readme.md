@@ -99,6 +99,7 @@ rem Go to Windows Preinstallation Environment
 cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment"
 MakeWinPEMedia.cmd /ISO /f C:\winpe C:\win-10-pe.iso
 ```
+> Then copy it to tftp folder default will be "/var/lib/tftpboot/bootloader/win-10"
 
 ## How to sysprep
 

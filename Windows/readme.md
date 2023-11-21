@@ -99,7 +99,7 @@ rem Go to Windows Preinstallation Environment
 cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment"
 MakeWinPEMedia.cmd /ISO /f C:\winpe C:\win-10-pe.iso
 ```
-> Then copy it to tftp folder default will be "/var/lib/tftpboot/bootloader/win-10"
+> Then copy it to tftp folder, default will be "/var/lib/tftpboot/bootloader/win-10"
 
 ## How to sysprep
 
@@ -125,14 +125,59 @@ SystemLocale: en-US
 UILanguage: en-US
 UserLocale: en-US
 
+# DiskConfiguration
+Microsoft-Windows-Setup -> DiskConfiguration -> Disk
+Action = AddListItem
+DiskID = 0
+WillWipeDisk = true
+
+```
+
+![Alt text](/screenshots/Unattend-pass1-1.png)
+```shell
+
+# Add Partation
+Right-Click -> Disk[DiskID="0"] -> Add New
+
+Microsoft-Windows-Setup -> DiskConfiguration -> Disk -> Disk[DiskID="0"] -> CreatePartitions
+Extend = true
+Order = 1
+Type = Primary
+
+Microsoft-Windows-Setup -> DiskConfiguration -> Disk -> Disk[DiskID="0"] -> ModifyPartition
+Extend = false
+Format = NTFS
+Lable = Windows 10
+Letter = C
+Order = 1 
+Partation = 1
+```
+![Alt text](/screenshots/Unattend-pass1-2.png)
+![Alt text](/screenshots/Unattend-pass1-3.png)
+```shell
+# Image install paration
+Microsoft-Windows-Setup -> ImageInstall -> OSImage 
+InstallToAvaliablePartition = false
+WillShowUI = OnError
+
+Microsoft-Windows-Setup -> ImageInstall -> OSImage -> InstallTo
+DiskID = 0
+Partition = 1 
+```
+![Alt text](/screenshots/Unattend-pass1-4.png)
+![Alt text](/screenshots/Unattend-pass1-5.png)
+```shell
 # The Windows 10 Product key:
 Microsoft-Windows-Setup -> UserData -> ProductKey -> Key = {specify your MAK or GVLK key}
 
 # automatically accept user agreement:
-Microsoft-Windows-Setup -> UserData -> AccepptEula = True
+Microsoft-Windows-Setup -> UserData  
+AccepptEula = True
+FullName = Cheertech
+Organization = Cheertech
 ```
+![Alt text](/screenshots/Unattend-pass1-6.png)
 
-![Alt text](/screenshots/Unattend-pass1-1.png)
 ---
 
 **Pass 4**
@@ -222,7 +267,7 @@ This will prevent Sysprep from failing when processing Microsoft Store apps.
 > - /unattend:answer_file_name — allows you to apply the settings from the answer file to Windows during an unattended installation.
 
 
-#### Step 1. Install OEM Information and Logo
+#### Step 1. Install OEM Information and Logo (Optional)
 ---
 You can set your company branding info in the Computer Properties windows. In this example, we will set the OEMLogo, Company name, tech support website, and working hours. You can set these through the registry. Create a text file oem.reg, and copy the following code into it:
 
@@ -234,14 +279,14 @@ Windows Registry Editor Version 5.00
 “Manufacturer”=”Cheertech, LTM”
 “Model”=”Windows 10 Pro 21H1”
 “SupportHours”=”9am to 6pm ET M-F”
-“SupportURL”=”https://theitbros.com”
+“SupportURL”=”https://cheertech.com”
 ```
 
 #### Step 2: Install the Drivers and Apps
 ---
 You can install programs manually, or using the built-in WinGet package manager. Use the WinGet package manager to install the software that you need. (about 5000 programs available in WinGet repo).
 
-> `[Note]` Winget only avaliable on windows 22H2 or above
+> `[Note]` ***Winget only avaliable on windows 22H2 or above***
 
 ```
 winget install --id=7zip.7zip -e && winget install --id=Google.Chrome -e && winget install --id=Adobe.Acrobat.Reader.32-bit
@@ -363,7 +408,7 @@ rd /s /q "C:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
 del /f /q /a:sh "C:\Users\Default\AppData\Local\Microsoft\Windows\WebCacheLock.dat"
 ```
 
-
+> `[Note]` Run this command only if you want to do the update
 Run the following commands to download and install all available Windows updates:
 
 ```
@@ -445,6 +490,12 @@ dism /Unmount-Image /MountDir:C:\mount /Commit
 
 ### Remove Images from wim file
 
+> Get Image info
+```
+Dism /Get-ImageInfo /imagefile:c:\win-10\sources\install.wim
+```
+
+> Strip from Image from wim
 ```
 Remove-WindowsImage -ImagePath "c:\win-10\sources\install.wim" -Index 1 -CheckIntegrity
 ```

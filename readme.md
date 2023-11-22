@@ -2,13 +2,13 @@
 
 ## Installation Steps 
 1. ***[Configure DHCP Server](#config-dhcp)***
-2. ***Installation***
+2. ***PXE Server Installation***
     - ***[Install dependency packages](#dependency-packages-installtion)***
     - ***[tftp setup](#TFTP-setup)***
     - ***[ftp setup](#ftp-setup)***
     - ***[samba setup](#samba-setup)***
     - ***[apache setup](#apache-setup)***
-3. ***[Windows Unattended Installation](/Windows/readme.md)***
+3. ***[Windows Setup](/Windows/readme.md)***
     1. ***[Install ADK Tool](/Windows/readme.md/#install-adk-tool-for-windows-1011)***
     2. ***[How to enscapsulate windows PE](/Windows/readme.md/#how-to-enscapsulate-windows-pe-preinstall-environment)***
     3. ***[How to sysprep](/Windows/readme.md/#how-to-sysprep)***

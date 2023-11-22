@@ -612,7 +612,9 @@ If you got an error like this
 2023-11-22 14:48:45, Error      [0x0f0070] SYSPRP RunDlls:An error occurred while running registry sysprep DLLs, halting sysprep execution. dwRet = 0x975
 2023-11-22 14:48:45, Error      [0x0f00d8] SYSPRP WinMain:Hit failure while pre-validate sysprep cleanup internal providers; hr = 0x80070975
 ```
-Solution
+Here is several solutions you can try 
+
+#### Solution: 1
 ```powershell
 # This command will scan all files and compare with offical image files
 Dism /Online /Cleanup-Image /ScanHealth
@@ -628,6 +630,28 @@ shutdown /r /f /t 0
 
 # Check if system is normal
 sfc /SCANNOW
+```
+
+#### Solution: 2
+
+The error "Sysprep was not able to confirm your Windows installation" may appear if you deleted some of the default Windows apps or if your Windows 11 computer is devoid of them. Therefore, this issue might be resolved by reinstalling every default program that comes with Windows 11. The Get-AppxPackage cmdlet in Windows PowerShell makes it simple to reinstall Windows system programs:
+
+```powershell
+Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}
+
+Get-AppxPackage | % { Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppxManifest.xml" -verbose }
+```
+
+
+```powershell
+# Extra steps for checking
+# Check if folder has PendingDeletes and PendingRenames 
+cd %WinDir%\WinSxS\Temp 
+```
+
+Repair Log is stored in CBS.log
+```powershell
+notepad %WinDir%\Logs\CBS\CBS.log.
 ```
 
 After all have done do sysprep again.

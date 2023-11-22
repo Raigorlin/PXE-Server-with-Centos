@@ -476,8 +476,18 @@ C:\Windows\System32\Sysprep\sysprep.exe /oobe /generalize /shutdown /unattend:C:
 3. Type Diskpart command. Use the list vol command to identify the drive letters. In our example, the installed Windows image is located on drive C
 
 ![Alt text](/screenshots/sysprep-image-768x313.png)
-```
-dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\\win-10-sysprep.wim /capturedir:C: /name:"Win 10 Pro"
+```cmd 
+rem activate win pre installation environment
+wpeinit
+
+rem mount samba file location
+net use \\10.99.1.25\install /user:root P@ssw0rd
+
+rem Caputre Image from C: drive 
+dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\win-10-sysprep.wim /capturedir:C: /name:"Win 10 Pro"
+
+rem umount samba file location
+net use \\10.99.1.25\install /d /y 
 ```
 ![Alt text](/screenshots/windows-11-sysprep-generalize-768x210.png)
 
@@ -486,7 +496,7 @@ dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\\win-10-sysprep.wim 
 ###  Convert Wim To ISO
 ---
 ```
-oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bd:(file_path)\boot\etfsboot.com#pEF,e,bd:\(file_path)\efi\microsoft\boot\efisys.bin C:\(file_path) C:\Windows-10-Pro-x64.iso
+Oscdimg -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10\sources C:\win-10-pro-cheertech.iso
 ```
 ---
 

@@ -602,3 +602,32 @@ C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Deployment 
 > `Note` In some cases, SysPrep returns the error: unable to validate your Windows installation. The cause of the error is listed in the %WINDIR%\System32\Sysprep\Panther\setupact file.
 
 ![Alt text](/screenshots/windows-sysprep-error.png)
+
+If you got an error like this
+```shell
+2023-11-22 14:48:45, Error                 SYSPRP Sysprep_Clean_Validate_Opk: Audit mode can't be turned on if there is an active scenario.; hr = 0x800F0975
+2023-11-22 14:48:45, Error                 SYSPRP ActionPlatform::LaunchModule: Failure occurred while executing 'Sysprep_Clean_Validate_Opk' from C:\Windows\System32\spopk.dll; dwRet = 0x975
+2023-11-22 14:48:45, Error                 SYSPRP SysprepSession::Validate: Error in validating actions from C:\Windows\System32\Sysprep\ActionFiles\Cleanup.xml; dwRet = 0x975
+2023-11-22 14:48:45, Error                 SYSPRP RunPlatformActions:Failed while validating Sysprep session actions; dwRet = 0x975
+2023-11-22 14:48:45, Error      [0x0f0070] SYSPRP RunDlls:An error occurred while running registry sysprep DLLs, halting sysprep execution. dwRet = 0x975
+2023-11-22 14:48:45, Error      [0x0f00d8] SYSPRP WinMain:Hit failure while pre-validate sysprep cleanup internal providers; hr = 0x80070975
+```
+Solution
+```powershell
+# This command will scan all files and compare with offical image files
+Dism /Online /Cleanup-Image /ScanHealth
+
+# This command will only use after the first command and when files are corrupted.
+Dism /Online /Cleanup-Image /CheckHealth
+
+# This command will restore to factory state
+DISM /Online /Cleanup-image /RestoreHealth
+
+# reboot the system
+shutdown /r /f /t 0
+
+# Check if system is normal
+sfc /SCANNOW
+```
+
+After all have done do sysprep again.

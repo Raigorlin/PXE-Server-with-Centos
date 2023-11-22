@@ -394,9 +394,6 @@ Get-AppxPackage *ZuneVideo* | Remove-AppxPackage
 # MS Office
 Get-AppxPackage *MicrosoftOfficeHub* | Remove-AppxPackage
 
-# People app
-Get-AppxPackage *People* | Remove-AppxPackage
-
 # Maps
 Get-AppxPackage *WindowsMaps* | Remove-AppxPackage
 
@@ -408,9 +405,6 @@ Get-AppxPackage *WindowsSoundRecorder* | Remove-AppxPackage
 
 # Teams/Chat
 Get-AppxPackage *Teams* | Remove-AppxPackage
-
-# Microsoft Edge
-Get-AppxPackage *MicrosoftEdge* | Remove-AppxPackage
 
 # OneDrive
 Get-AppxPackage *OneDriveSync* | Remove-AppxPackage

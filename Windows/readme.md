@@ -639,6 +639,7 @@ The error "Sysprep was not able to confirm your Windows installation" may appear
 ```powershell
 Get-AppxPackage -AllUsers| Foreach {Add-AppxPackage -DisableDevelopmentMode -Register “$($_.InstallLocation)\AppXManifest.xml”}
 
+# if you got error with first command try this
 Get-AppxPackage | % { Add-AppxPackage -DisableDevelopmentMode -Register "$($_.InstallLocation)\AppxManifest.xml" -verbose }
 ```
 

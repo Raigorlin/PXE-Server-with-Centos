@@ -559,6 +559,8 @@ Windows SIM was unable to generate a catalog.
 ![Alt text](/screenshots/sysprep-win10-error.png)
 
 > In order to fix this error, you need to install the latest ADK and WSIM available for your Windows build.
+[https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install](https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+![Alt Text](/screenshots/adk_install.png)
 
 
 ---

@@ -493,11 +493,44 @@ net use \\10.99.1.25\install /d /y
 
 ---
 
-###  Convert Wim To ISO
+###  Convert Wim To ISO 
 ---
-```
+
+Reference: [https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oscdimg-command-line-options?view=windows-11](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oscdimg-command-line-options?view=windows-11)
+
+
+```cmd
 Oscdimg -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10\sources C:\win-10-pro-cheertech.iso
 ```
+
+`[Note]` For images larger than 4.5 GB, you must create a boot order file to make sure that boot files are located at the beginning of the image.
+
+The rules for file ordering are as follows:
+
+1. The order file must be in ANSI.
+2. The order file must end in a new line.
+3. The order file must have one file per line.
+4. Each file must be specified relative to the root of the image.
+5. Each file must be specified as a long file name. No short names are allowed.
+6. Each file path cannot be longer than MAX_PATH. This includes the volume name.
+
+```cmd
+Oscdimg -yoC:\win-10\BootOrder.txt -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10\sources C:\win-10-pro-cheertech.iso
+```
+
+where BootOrder.txt contains the following list of files: 
+```
+boot\bcd
+boot\boot.sdi
+boot\bootfix.bin
+boot\bootsect.exe
+boot\etfsboot.com
+boot\memtest.efi
+boot\memtest.exe
+boot\fonts\cht_boot.ttf
+sources\boot.wim
+```
+
 ---
 
 

@@ -159,13 +159,16 @@ Partation = 1
 Microsoft-Windows-Setup -> ImageInstall -> OSImage 
 InstallToAvaliablePartition = false
 WillShowUI = OnError
-
+‵‵
 Microsoft-Windows-Setup -> ImageInstall -> OSImage -> InstallTo
 DiskID = 0
 Partition = 1 
 ```
 ![Alt text](/screenshots/Unattend-pass1-4.png)
 ![Alt text](/screenshots/Unattend-pass1-5.png)
+
+For KMS Client Key you can take a look [https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys](https://learn.microsoft.com/en-us/windows-server/get-started/kms-client-activation-keys)
+
 ```shell
 # The Windows 10 Product key:
 Microsoft-Windows-Setup -> UserData -> ProductKey -> Key = {specify your MAK or GVLK key}
@@ -182,10 +185,39 @@ Organization = Cheertech
 
 **Pass 4**
 
+
 ```shell
+# Only if you need computer to Join Active Directory
 Microsoft-Windows-UnattendedJoin -> Identification -> Credentials 
 ```
+![Alt text](/screenshots/Unattend-pass4-6.png)
+
 ![Alt text](/screenshots/Unattend-pass4-1.png)
+```shell
+# To Enable Remote Desktop Connection
+Windows-TerminalServices-LocalSessionManager -> fDenyTSConnections = false
+
+Windows-TerminalServices-WinStationExtensions -> 
+SecurityLayer = 2 
+UserAuthentication = 0 
+```
+![Alt text](/screenshots/Unattend-pass4-2.png)
+![Alt text](/screenshots/Unattend-pass4-3.png)
+```shell 
+# Allow Firewall Rules
+Networking-MPSSVC-Svc -> FirewallGroups
+DomainProfile_EnableFirewall = False
+PrivateProfile_EnableFirewall = False
+PublicProfile_EnableFirewall = False
+
+Networking-MPSSVC-Svc -> FirewallGroups -> (Right-Click) add new -> FirewallGroup
+Active = true
+Group = Remote Desktop
+Key = RemoteDesktop
+Profile = All
+```
+![Alt text](/screenshots/Unattend-pass4-4.png)
+![Alt text](/screenshots/Unattend-pass4-5.png)
 ---
 **Pass 7**
 
@@ -195,7 +227,20 @@ Microsoft-Windows-Shell-Setup –> AutoLogon ->
 Enabled = True
 LogonCount = 1
 Username = itadmin
+```
+![Alt text](/screenshots/Unattend-pass7-2.png)
 
+```shell
+# For Windows Keyboard and language setup 
+Windows-International-Core ->
+InputLocale = zh-TW  # Keyboard
+SystemLocale = zh-TW 
+UILanguage = zh-TW # Windows System Language 
+UILanguageFallback = zh-TW # Fallback if Fail to setup windows language
+UserLocale = zh-TW
+```
+![Alt text](/screenshots/Unattend-pass7-3.png)
+```shell
 # Skip Microsoft account creation screen (MSA):
 Microsoft-Windows-Shell-Setup –> OOBE -> 
 HideEULAPage = True
@@ -213,7 +258,6 @@ Name: itadmin
 Group: Administrators
 Password: your password 
 ```
-![Alt text](/screenshots/Unattend-pass7-2.png)
 
 ![Alt text](/screenshots/Unattend-pass7-1.png)
 
@@ -271,7 +315,7 @@ This will prevent Sysprep from failing when processing Microsoft Store apps.
 ---
 You can set your company branding info in the Computer Properties windows. In this example, we will set the OEMLogo, Company name, tech support website, and working hours. You can set these through the registry. Create a text file oem.reg, and copy the following code into it:
 
-
+> `[Note]` You can also add it on unattend answer file  
 ```
 Windows Registry Editor Version 5.00
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation]

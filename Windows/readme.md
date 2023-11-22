@@ -14,7 +14,7 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
     1. ***[Config Unattend XML](#config-unattend-file)***
     2. ***[Run Sysprep](#run-sysprep)***
         - ***[Why sysprep](#why-sysprep)***
-        - ***[Install OEM Information and Logo](#step-1-install-oem-information-and-logo)***
+        - ***[Install OEM Information and Logo (optional)](#step-1-install-oem-information-and-logo)***
         - ***[Install the Drivers and Apps](#step-2-install-the-drivers-and-apps)***
         - ***[Disable Telemetry and Data Collection in Windows 10](#step-3-disable-telemetry-and-data-collection-in-windows-10)***
         - ***[Install Windows Security Update in Audit Mode](#step-4-install-windows-security-update-in-audit-mode)***

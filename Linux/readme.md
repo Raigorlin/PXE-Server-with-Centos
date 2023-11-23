@@ -51,8 +51,7 @@ python -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (p
 
 ## Centos Kickstart
 
-you can find kickstart example under [Kickstart](/ks/kickstart-centos7.cfg) folder 
-
+you can find kickstart example under [Kickstart](/Linux/ks/kickstart-centos7.cfg) folder 
 
 Then place under /var/ftp/pub/kickstart-centos7.cfg
 ```shell

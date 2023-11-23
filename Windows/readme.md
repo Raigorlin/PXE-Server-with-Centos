@@ -61,6 +61,7 @@ Now let's try to pack bootable environment
 Make sure you open **CMD** with **Administrator privileges**
 
 
+
 > Change directory to Windows Preinstallation Environment
 ```cmd
 cd "C:\Program Files (x86)\Windows Kits\10\Assessment and Deployment Kit\Windows Preinstallation Environment"
@@ -600,6 +601,23 @@ Windows SIM was unable to generate a catalog.
 ![Alt Text](/screenshots/adk_install.png)
 
 
+### DISM commit and umount failed
+
+Try to remount image
+```cmd
+dism /Remount-Image /MountDir:C:\winpe\mount
+```
+
+Discard changes and umount 
+```cmd
+dism /Unmount-Image /MountDir:C:\mount /discard
+```
+
+Cleaning up resources associated from mounted image:
+```cmd
+dism /Cleanup-Mountpoints
+```
+
 ---
 
 ### Copype
@@ -693,3 +711,10 @@ notepad %WinDir%\Logs\CBS\CBS.log.
 ```
 
 After all have done do sysprep again.
+
+
+## References
+
+- [DISM - Deploy Image Servicing and Management](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/what-is-dism?view=windows-10)
+- [WinPE - Windows Preinstallation Environment](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-intro?view=windows-10)
+- [Unattend.xml - Answer file answer](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/components-b-unattend)

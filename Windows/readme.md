@@ -519,7 +519,7 @@ The rules for file ordering are as follows:
 6. Each file path cannot be longer than MAX_PATH. This includes the volume name.
 
 ```cmd
-Oscdimg -yoC:\win-10\BootOrder.txt -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10\sources C:\win-10-pro-cheertech.iso
+Oscdimg -yoC:\win-10\BootOrder.txt -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10 C:\win-10-pro-cheertech.iso
 ```
 
 where BootOrder.txt contains the following list of files: 

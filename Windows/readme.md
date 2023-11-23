@@ -25,7 +25,9 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
 5. ***[Convert Wim To ISO](#convert-wim-to-iso)***
 6. ***[Add Windows Update Packages](#Add-Windows-Update-packages)***
 7. ***[Troubleshooting](#windows-troubleshooting)***
+8. ***[References](#references)***
 ## Install ADK Tool (For Windows 10/11)
+
 
 - Download the [ADK Tool](https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install).
 - Run the **adksetup.exe** installer.
@@ -56,11 +58,12 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
 
 ## How to enscapsulate windows PE (Preinstall Environment)
 
+
 Now let's try to pack bootable environment
 
 Make sure you open **CMD** with **Administrator privileges**
 
-
+![Alt Text](/screenshots/dep-win8-sxs-createmodelspecificfiles.jpg)
 
 > Change directory to Windows Preinstallation Environment
 ```cmd
@@ -715,6 +718,10 @@ After all have done do sysprep again.
 
 ## References
 
-- [DISM - Deploy Image Servicing and Management](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/what-is-dism?view=windows-10)
 - [WinPE - Windows Preinstallation Environment](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/winpe-intro?view=windows-10)
+- [DISM - Deploy Image Servicing and Management](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/deployment-image-servicing-and-management--dism--command-line-options?view=windows-10)
+- [DISM - Capture and apply Image](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/capture-and-apply-windows-system-and-recovery-partitions?view=windows-11)
 - [Unattend.xml - Answer file answer](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/components-b-unattend)
+
+- [Oscdimg - Wim To ISO](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oscdimg-command-line-options?view=windows-11)
+- [OEM Deployment Lab](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oem-deployment-of-windows-desktop-editions?view=windows-11)

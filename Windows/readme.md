@@ -477,7 +477,7 @@ C:\Windows\System32\Sysprep\sysprep.exe /oobe /generalize /shutdown /unattend:C:
 
 1. Boot up Image to installation Page
 2. Press Shift + F10 on the first setup screen.
-3. Type Diskpart command. Use the list vol command to identify the drive letters. In our example, the installed Windows image is located on drive C
+3. Type Diskpart command. Use the list vol command to identify the drive letters. In our example, the installed Windows image is located on drive D
 
 ![Alt text](/screenshots/sysprep-image-768x313.png)
 ```cmd 
@@ -488,7 +488,7 @@ rem mount samba file location
 net use \\10.99.1.25\install /user:root P@ssw0rd
 
 rem Caputre Image from C: drive 
-dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\win-10-sysprep.wim /capturedir:C: /name:"Win 10 Pro"
+dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\win-10-sysprep.wim /capturedir:D: /name:"Win 10 Pro"
 
 rem umount samba file location
 net use \\10.99.1.25\install /d /y 
@@ -504,7 +504,7 @@ Reference: [https://learn.microsoft.com/en-us/windows-hardware/manufacture/deskt
 
 
 ```cmd
-Oscdimg -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10\sources C:\win-10-pro-cheertech.iso
+Oscdimg -bootdata:2#p0,e,bC:\win-10\boot\Etfsboot.com#pEF,e,bC:\win-10\efi\microsoft\boot\Efisys.bin -u1 -udfver102 C:\win-10 C:\win-10-pro-cheertech.iso
 ```
 
 `[Note]` For images larger than 4.5 GB, you must create a boot order file to make sure that boot files are located at the beginning of the image.

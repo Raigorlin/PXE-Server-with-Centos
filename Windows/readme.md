@@ -722,6 +722,6 @@ After all have done do sysprep again.
 - [DISM - Deploy Image Servicing and Management](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/deployment-image-servicing-and-management--dism--command-line-options?view=windows-10)
 - [DISM - Capture and apply Image](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/capture-and-apply-windows-system-and-recovery-partitions?view=windows-11)
 - [Unattend.xml - Answer file answer](https://learn.microsoft.com/en-us/windows-hardware/customize/desktop/unattend/components-b-unattend)
-
 - [Oscdimg - Wim To ISO](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oscdimg-command-line-options?view=windows-11)
 - [OEM Deployment Lab](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/oem-deployment-of-windows-desktop-editions?view=windows-11)
+- [Sysprep - OOBE/Audit Mode](https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/boot-windows-to-audit-mode-or-oobe?view=windows-11)

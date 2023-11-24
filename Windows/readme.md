@@ -487,13 +487,24 @@ wpeinit
 rem mount samba file location
 net use \\10.99.1.25\install /user:root P@ssw0rd
 
+rem make new folder call sysprep
+mkdir \\10.99.1.25\install\sysprep\
+
 rem Caputre Image from C: drive 
-dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\win-10-sysprep.wim /capturedir:D: /name:"Win 10 Pro"
+dism /capture-image /imagefile:\\10.99.1.25\install\sysprep\install.wim /capturedir:D: /name:"Win 10 Pro"
 
 rem umount samba file location
 net use \\10.99.1.25\install /d /y 
 ```
 ![Alt text](/screenshots/windows-11-sysprep-generalize-768x210.png)
+
+Move \\10.99.1.25\install\sysprep\install.wim to win-10 folder
+
+```cmd
+del \\10.99.1.25\install\win-10\sources\install.wim
+
+move \\10.99.1.25\install\sysprep\install.wim \\10.99.1.25\install\win-10\sources\install.wim
+```
 
 ---
 

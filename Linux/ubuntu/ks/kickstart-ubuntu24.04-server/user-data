@@ -1,0 +1,81 @@
+#cloud-config
+autoinstall:
+  version: 1
+  # use interactive-sections to avoid an automatic reboot
+  #interactive-sections:
+  #  - locale
+  apt:
+    # even set to no/false, geoip lookup still happens
+    # geoip: true
+    fallback: abort
+    preserve_sources_list: false
+    primary:
+    - arches: [amd64, i386]
+      uri: http://us.archive.ubuntu.com/ubuntu
+    - arches: [default]
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  # Add this one if you don't use user-data for multi-user setup
+  identity: 
+    realname: 'IT Admin'
+    hostname: ubuntu
+    password: $6$RGb9hkvUlaenLKX6$i6ZbkHJjgo2PBTmcSTF1yN14rJnTbeL2CbuBc3Hb9Tn/0gHgXAzDH4Ww.jxnTkA.hFUMcgtvyrw2MPh9zV6gK.
+    username: itadmin
+  user-data:
+    disable_root: false
+    users:
+      - name: sysadmin
+        passwd: $6$.u67NjXsVzODZEMQ$SwmlG2GBISBrlCCgF5GoyxNYoQt01x/ps5NSwo.R8if6rcyicHZG5fNeYiTHT4W/x8yj.ajF/6XDAm8YhHuKv/
+        lock_passwd: false
+        shell: /bin/bash
+        groups: [sudo]
+    runcmd:
+      - printf 'nameserver 192.168.0.100\nnameserver 192.168.0.101\noptions timeout:1\noptions attempts:1\noptions rotate\n' > /etc/resolv.conf
+      - ntpdate ntp.ark88.local
+      - echo '*/5 * * * * root /usr/sbin/ntpdate 192.168.100.99' >> /etc/crontab
+  package_update: true
+  package_upgrade: true
+  package_reboot_if_required: true
+  packages:
+  - bind9-dnsutils
+  - curl
+  - wget
+  - net-tools
+  - ntpdate
+  timezone: Asia/Taipei
+  keyboard: {layout: us, variant: ''}
+  locale: en_US.UTF-8
+  # interface name will probably be different
+  network:
+    network:
+      version: 2
+      ethernets:
+        ens192:
+          critical: true
+          dhcp-identifier: mac
+          dhcp4: true
+        zz-all-en:
+            dhcp4: true
+            match:
+                name: en*
+        zz-all-eth:
+            dhcp4: true
+            match:
+                name: eth*
+  ssh:
+    allow-pw: true
+    authorized-keys: []
+    install-server: true
+  # this creates an bios_grub partition, /boot partition, and root(/) lvm volume
+  storage:
+    config:
+    - {ptable: gpt, path: /dev/sda, wipe: superblock, preserve: false, name: '', grub_device: true, type: disk, id: disk-sda}
+    - {device: disk-sda, size: 1048576, flag: bios_grub, number: 1, preserve: false, type: partition, id: partition-0}
+    - {device: disk-sda, size: 1073741824, wipe: superblock, flag: '', number: 2, preserve: false, type: partition, id: partition-1}
+    - {fstype: ext4, volume: partition-1, preserve: false, type: format, id: format-0}
+    - {device: disk-sda, size: -1, wipe: superblock, flag: '', number: 3, preserve: false, type: partition, id: partition-2}
+    - {name: ubuntu-vg, devices: [partition-2], preserve: false, type: lvm_volgroup, id: lvm_volgroup-0}
+    - {name: ubuntu-lv, volgroup: lvm_volgroup-0, size: 100%, preserve: false, type: lvm_partition, id: lvm_partition-0}
+    - {fstype: ext4, volume: lvm_partition-0, preserve: false, type: format, id: format-1}
+    - {device: format-1, path: /, type: mount, id: mount-1}
+    - {device: format-0, path: /boot, type: mount, id: mount-0}
+

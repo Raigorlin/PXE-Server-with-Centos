@@ -1,4 +1,5 @@
-# Centos Setup
+# Linux-Setup
+
 
 ## Prerequisites
 You will need to make sure Samba, TFTP Service is already avaliable for this setup. 
@@ -6,12 +7,18 @@ You will need to make sure Samba, TFTP Service is already avaliable for this set
 Configured DHCP filename and TFTP Server pointing. If not you will need to follow this instruction first. [PXE Installation](../readme.md)
 
 ## Steps
+- ****[Centos Setup](#centos-setup)****
+    1. ***[Copy files from iso](#copy-files-from-Centos-iso)***
+    2. ***[Config Centos Kickstart ](#centos-kickstart)***
+- ****[Ubuntu Setup](#ubuntu-setup)****
+    1. ***[Copy files from iso](#copy-files-from-ubuntu-iso)***
+    2. ***[Config Ubuntu user-data ](#ubuntu-user-data)*** 
+- ***[Config PXE server for auto installation](#config-pxe-server)***
 
-1. ***[Copy files from iso](#copy-files-from-iso)***
-2. ***[Config Centos Kickstart ](#centos-kickstart)***
-3. ***[Config PXE server for auto installation](#config-pxe-server)***
 
-## Copy files from iso
+## Centos Setup
+
+### Copy files from Centos iso
 
 Mount ISO to /mnt/iso
 
@@ -23,7 +30,7 @@ mount -o loop  /dev/cdrom /mnt/iso
 cp -rf /mnt/iso /var/www/centos7 #Change it accroding to linux verison
 ```
 
-### Apache Setup
+#### Apache Setup
 ---
 
 > Add your config
@@ -43,15 +50,15 @@ Allow from all
 </Directory>
 ```
 ---
-## User password Encryption for Linux
+### User password Encryption for Linux
 
 ```python
 python -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (pw==getpass.getpass("Confirm: ")) else exit())'
 ```
 
-## Centos Kickstart
+### Centos Kickstart
 
-you can find kickstart example under [Kickstart](/Linux/ks/kickstart-centos7.cfg) folder 
+you can find kickstart example under [Kickstart](/Linux/Centos/ks/kickstart-centos7.cfg) folder 
 
 Then place under /var/ftp/pub/kickstart-centos7.cfg
 ```shell
@@ -142,15 +149,28 @@ sed -i 's/.*UseDNS.*/UseDNS no/g' /etc/ssh/sshd_config
 %end
 ```
 
-## Config PXE server
+
+## Ubuntu Setup
+
+### Copy ISO To Apache Server
+
+### Config PXE server
 ```shell
+
+# Centos
 label 1
 menu label ^2) Install CentOS 7
 menu default
 kernel bootloader/centos7/vmlinuz
 # append initrd=bootloader/centos7/initrd.img method=http://10.99.1.25/centos7 devfs=nomount
 append initrd=bootloader/centos7/initrd.img ks=ftp://10.99.1.25/pub/kickstart-centos7.cfg
+
+
+# Ubuntu
+label 2
+menu label ^2) Install Ubuntu-22.04.3 Jammy (LTS)
+menu 2
+kernel bootloader/ubuntu22.04-server/vmlinuz
+initrd bootloader/ubuntu22.04-server/initrd
+append root=/dev/ram0 ramdisk_size=1500000 ip=dhcp url=http://10.99.1.25/ubuntu/jammy-live-server-amd64.iso autoinstall ds=nocloud-net;s=http://10.99.1.25/ubuntu/kickstart-ubuntu22.04-server/ cloud-config-url=/dev/null
 ```
-
-
-

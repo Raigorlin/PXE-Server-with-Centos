@@ -26,10 +26,11 @@
     5. ***[Convert Wim To ISO](/Windows/readme.md/#convert-wim-to-iso)***
     6. ***[Add Windows Update Packages](/Windows/readme.md/#Add-Windows-Update-packages)***
     7.  ***[Troubleshooting](/Windows/readme.md/#windows-troubleshooting)***
-4. ***[Centos Setup](/Linux/readme.md/#Centos-Setup)***
-    - ***[Copy files from iso](/Linux/readme.md/#copy-files-from-iso)***
-    - ***[Config Centos Kickstart ](/Linux/readme.md/#centos-kickstart)***
-    - ***[Config PXE server for auto installation](/Linux/readme.md/#config-pxe-server)***
+4. ***[Linxux Setup](/Linux/readme.md/#Linux-Setup)***
+        -   ***[Centos Setup](/Linux/readme.md/#centos-setup)***
+            - ***[Copy files from iso](/Linux/readme.md/#copy-files-from-iso)***
+            - ***[Config Centos Kickstart ](/Linux/readme.md/#centos-kickstart)***
+            - ***[Config PXE server for auto installation](/Linux/readme.md/#config-pxe-server)***
 
 
 ---

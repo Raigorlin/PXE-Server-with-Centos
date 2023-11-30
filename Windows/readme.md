@@ -551,6 +551,8 @@ sources\boot.wim
 
 ### Add Windows Update packages
 
+----
+### Method 1
 #### Step 1
 ---
 Download update from [Microsoft Update Catalog](https://www.catalog.update.microsoft.com/Home.aspx)
@@ -586,6 +588,40 @@ Umount Image
 ```
 dism /Unmount-Image /MountDir:C:\mount /Commit
 ```
+
+---
+Method 2
+---
+
+> Alternative way to do is go to audit mode again and try to add the softwares you need then recapture the image. 
+
+> `[Note]` When you try to Sysprep OOBE stage you will need new unattend config for repacking, I'm not quite sure why but will fail if you use the same one with previous config. 
+>
+> You can use this one as an example: [Win-10-Repack](/Windows/win-10-repack.xml)
+> I try to remove local account creatiion and auto logon in pass7 OOBE and add copy profile in pass4 and it works.
+
+#### Pass 4
+
+```
+Windows-Shell-Setup -> CopyProfile = True
+
+# if you don't add it sometimes fail to install, totally have not idea.
+Windows-Shell-Setup -> AutoLogon
+Enabled = True
+LogonCount = 1
+Username = itadmin
+
+```
+
+![Alt Text](/screenshots/Repack-Unattend-pass4-1.png)
+
+```
+Windows-Shell-Setup -> AutoLogon (Delete that)
+Windows-Shell-Setup -> UserAccounts -> LocalAccounts (Delete that)
+
+```
+
+![Alt Text](/screenshots/Repack-Unattend-pass7-1.png)
 ---
 
 ### Remove Images from wim file
@@ -611,7 +647,10 @@ Windows SIM was unable to generate a catalog.
 ![Alt text](/screenshots/sysprep-win10-error.png)
 
 > In order to fix this error, you need to install the latest ADK and WSIM available for your Windows build.
-[https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install](https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+>
+>[https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install](https://learn.microsoft.com/en-us/windows-hardware/get-started/adk-install)
+
+
 ![Alt Text](/screenshots/adk_install.png)
 
 

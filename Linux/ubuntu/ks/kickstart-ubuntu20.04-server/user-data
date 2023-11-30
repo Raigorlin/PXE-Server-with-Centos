@@ -24,10 +24,11 @@ autoinstall:
     disable_root: false
     users:
       - name: sysadmin
+        gecos: sysadmin
         passwd: $6$.u67NjXsVzODZEMQ$SwmlG2GBISBrlCCgF5GoyxNYoQt01x/ps5NSwo.R8if6rcyicHZG5fNeYiTHT4W/x8yj.ajF/6XDAm8YhHuKv/
         lock_passwd: false
         shell: /bin/bash
-        groups: [sudo]
+        groups: sudo
     runcmd:
       - printf 'nameserver 192.168.0.100\nnameserver 192.168.0.101\noptions timeout:1\noptions attempts:1\noptions rotate\n' > /etc/resolv.conf
       - ntpdate ntp.ark88.local

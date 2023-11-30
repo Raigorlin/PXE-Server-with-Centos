@@ -160,7 +160,12 @@ sed -i 's/.*UseDNS.*/UseDNS no/g' /etc/ssh/sshd_config
 ```shell
 mkdir -p /var/www/ubuntu/ && mkdir -p /var/www/ubuntu//kickstart-ubuntu22.04-server/
 
-touch /var/www/ubuntu//kickstart-ubuntu22.04-server/{meta-data,user-data}
+touch /var/www/ubuntu/kickstart-ubuntu22.04-server/{meta-data,user-data}
+```
+
+```shell
+# Add config to meta-data
+echo "instance-id: ubuntu" > /var/www/ubuntu/kickstart-ubuntu22.04-server/meta-data
 ```
 
 > ***User password Encryption for Ubuntu***
@@ -169,8 +174,9 @@ touch /var/www/ubuntu//kickstart-ubuntu22.04-server/{meta-data,user-data}
 python -c 'import crypt,getpass;pw=getpass.getpass();print(crypt.crypt(pw) if (pw==getpass.getpass("Confirm: ")) else exit())'
 ```
 
-Add this config for auto installation 
+
 ```shell
+# Add user-data config for auto installation 
 cat > /var/www/ubuntu//kickstart-ubuntu22.04-server/meta-data <<'ENDTERRAGRUNT'
 #cloud-config
 autoinstall:
@@ -259,7 +265,6 @@ autoinstall:
 
 ENDTERRAGRUNT
 ```
-
 
 
 ### Config PXE server

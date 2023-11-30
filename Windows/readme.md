@@ -23,7 +23,9 @@ Configured DHCP filename and TFTP Server pointing. If not you will need to follo
         - ***[Finalize Sysprep](#finalize)***
 4. ***[Capture Image (Using DISM after Generalize)](#capture-image-using-dism-after-generalize)***
 5. ***[Convert Wim To ISO](#convert-wim-to-iso)***
-6. ***[Add Windows Update Packages](#Add-Windows-Update-packages)***
+6. ***[Update Wim file](#update-wim-file)***
+    -  ***[Method 1 (Add update packages with DISM++)](#method-1)***
+    -  ***[Method 2 (Add updates and softwares with Audit Mode)](#method-2)***
 7. ***[Troubleshooting](#windows-troubleshooting)***
 8. ***[References](#references)***
 ## Install ADK Tool (For Windows 10/11)
@@ -549,8 +551,7 @@ sources\boot.wim
 ---
 
 
-### Add Windows Update packages
-
+### Update Wim file
 ----
 ### Method 1
 #### Step 1
@@ -593,8 +594,8 @@ dism /Unmount-Image /MountDir:C:\mount /Commit
 Method 2
 ---
 
-> Alternative way to do is go to audit mode again and try to add the softwares you need then recapture the image. 
-
+> Alternative way to do is go to sysprep audit mode again and try to add the softwares you need then recapture the image. 
+>
 > `[Note]` When you try to Sysprep OOBE stage you will need new unattend config for repacking, I'm not quite sure why but will fail if you use the same one with previous config. 
 >
 > You can use this one as an example: [Win-10-Repack](/Windows/win-10-repack.xml)
